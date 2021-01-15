@@ -1,0 +1,3 @@
+include ':unity-ads'
+rootProject.name='LockScreenAMongUs'
+include ':app', ':nativetemplates'
