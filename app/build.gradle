@@ -8,8 +8,8 @@ android {
         applicationId "com.amonguslock.amonglock.lock.screen"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 7
-        versionName "1.7"
+        versionCode 9
+        versionName "1.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,9 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.androidsx:rate-me:4.0.3'
-    implementation 'com.google.android.gms:play-services-ads:19.5.0'
-    implementation 'com.facebook:inshot:4.3.0'
-    implementation 'com.facebook.android:audience-network-sdk:5.+'
+    implementation 'com.google.android.gms:play-services-ads:19.6.0'
+    implementation 'com.facebook.android:audience-network-sdk:6.+'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.flurry.android:analytics:12.9.0@aar'
     implementation "androidx.recyclerview:recyclerview:1.1.0"

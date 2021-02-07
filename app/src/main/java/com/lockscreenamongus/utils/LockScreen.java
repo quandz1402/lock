@@ -3,7 +3,9 @@ package com.lockscreenamongus.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -20,6 +22,9 @@ public class LockScreen {
     private Activity activity;
     private static LockScreen singleton;
     private boolean disableHomeButton = false;
+
+
+
 
     public static LockScreen getInstance() {
         if (singleton == null) {
@@ -40,8 +45,27 @@ public class LockScreen {
 
     private void showSettingAccessibility(){
         if(!isMyServiceRunning(LockAccessibilityService.class) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-            context.startActivity(intent);
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //Yes button clicked
+                            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                            context.startActivity(intent);
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            dialog.cancel();
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Please allow this right, it can help us to display on the lock screen app\n" +
+                    "We need this permission to make the app work better. ").setPositiveButton("Yes", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show();
         }
     }
 
